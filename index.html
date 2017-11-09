@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 僕の壊れた頭から生まれました© -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ruby injector</title>
+    <style>
+        .fullwidth {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div>Usage: write your <i>kanji</i>, select it and press {.<br>
+         Then, write its <i>furigana</i> in the parenthesis.</div>
+    <div><textarea id="input" class="fullwidth" cols="30" rows="10" placeholder="{漢字}(かんじ)"></textarea></div>
+    <div><textarea id="output" class="fullwidth" cols="30" rows="10"></textarea></div>
+    <div id="preview" class="fullwidth"></div>
+
+    <script>
+        var pattern = /\{([^\}]*)\}\(([^\)]*)\)/g,
+            replacement = '<ruby>$1<rt>$2</rt></ruby>',
+            input = document.querySelector('#input'),
+            output = document.querySelector('#output'),
+            preview = document.querySelector('#preview');
+
+        input.onkeyup = (e) => {
+            var processed = input.value.replace(pattern, replacement);
+            output.value = processed;
+            preview.innerHTML = processed;
+        };
+
+        input.onkeypress = (e) => {
+            var sStart = input.selectionStart, sEnd = input.selectionEnd;
+            var left, middle, right;
+            var justice, speedLimit; // good and cool.
+
+            if (e.key === '{' && sStart != sEnd) {
+                e.preventDefault(); // don't actually insert '{' key
+
+                left = input.value.substring(0, sStart);
+                middle = input.value.substring(sStart, sEnd); // target!
+                right = input.value.substring(sEnd);
+
+                justice = left + '{' + middle + '}()';
+                speedLimit = justice.length - 1;
+                justice += right;
+
+                input.value = justice;
+                input.selectionEnd = speedLimit;
+            }
+        }
+    </script>
+</body>
+</html>
