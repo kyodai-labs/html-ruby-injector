@@ -7,17 +7,47 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ruby injector</title>
     <style>
-        .fullwidth {
+        body{
             width: 100%;
+            background-color: #202020;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF;
+            overflow: hidden;
+        }
+        .containers{
+            width: 80%;
+            margin: 10px auto;
+            text-align: left;
+        }
+        .containers:first-child{
+            margin-bottom: 25px;
+        }
+        .containers rt{
+            color: #FFA500;
+            font-size: 8pt;
+
+        }
+        .input-style{
+            width: 100%;
+            resize: none;
+        }
+        .highlight{
+            font-weight: 700;
+            color: #FFA500;
+        }
+        .highlight.memeguy{
+            color: #f5b142;
         }
     </style>
 </head>
 <body>
-    <div>Usage: write your <i>kanji</i>, select it and press {.<br>
-         Then, write its <i>furigana</i> in the parenthesis.</div>
-    <div><textarea id="input" class="fullwidth" cols="30" rows="10" placeholder="{漢字}(かんじ)"></textarea></div>
-    <div><textarea id="output" class="fullwidth" cols="30" rows="10"></textarea></div>
-    <div id="preview" class="fullwidth"></div>
+    <div class="containers"><h1 class="highlight memeguy">HTML Ruby Injector</h1>
+        Usage: write your <span class="highlight">kanji</span>, select it and press <span class="highlight memeguy">{</span>.<br>
+        Then, write its <span class="highlight">furigana</span> in the parenthesis.</div>
+    <div class="containers"><textarea id="input" class="input-style" cols="30" rows="10" placeholder="{漢字}(かんじ)"></textarea></div>
+    <div class="containers"><textarea id="output" class="input-style" cols="30" rows="10"></textarea></div>
+    <div id="preview" class="containers"></div>
 
     <script>
         var pattern = /\{([^\}]*)\}\(([^\)]*)\)/g,
