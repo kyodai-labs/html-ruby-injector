@@ -59,7 +59,7 @@
         input.onkeyup = (e) => {
             var processed = input.value.replace(pattern, replacement);
             output.value = processed;
-            preview.innerHTML = processed;
+            preview.innerHTML = processed.replace(/\n/g, '<br>');
         };
 
         input.onkeypress = (e) => {
