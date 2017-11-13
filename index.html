@@ -6,40 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ruby injector</title>
-    <style>
-        body{
-            width: 100%;
-            background-color: #202020;
-            text-align: center;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #FFFFFF;
-            overflow: hidden;
-        }
-        .containers{
-            width: 80%;
-            margin: 10px auto;
-            text-align: left;
-        }
-        .containers:first-child{
-            margin-bottom: 25px;
-        }
-        .containers rt{
-            color: #FFA500;
-            font-size: 8pt;
-
-        }
-        .input-style{
-            width: 100%;
-            resize: none;
-        }
-        .highlight{
-            font-weight: 700;
-            color: #FFA500;
-        }
-        .highlight.memeguy{
-            color: #f5b142;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./global.css">
 </head>
 <body>
     <div class="containers"><h1 class="highlight memeguy">HTML Ruby Injector</h1>
@@ -49,52 +16,6 @@
     <div class="containers"><textarea id="output" class="input-style" cols="30" rows="10"></textarea></div>
     <div id="preview" class="containers"></div>
 
-    <script>
-        var pattern = /\{([^\}]*)\}\(([^\)]*)\)/g,
-            replacement = '<ruby>$1<rt>$2</rt></ruby>',
-            input = document.querySelector('#input'),
-            output = document.querySelector('#output'),
-            preview = document.querySelector('#preview');
-
-        input.onkeyup = (e) => {
-            var processed = input.value.replace(pattern, replacement);
-            output.value = processed;
-            preview.innerHTML = processed.replace(/\n/g, '<br>');
-        };
-
-        input.onkeypress = (e) => {
-            var sStart = input.selectionStart, sEnd = input.selectionEnd;
-            var left, middle, right;
-            var justice, speedLimit; // good and cool.
-
-            if (e.key === '{' && sStart != sEnd) {
-                e.preventDefault(); // don't actually insert '{' key
-
-                left = input.value.substring(0, sStart);
-                middle = input.value.substring(sStart, sEnd); // target!
-                right = input.value.substring(sEnd);
-
-                justice = left + '{' + middle + '}()';
-                speedLimit = justice.length - 1;
-                justice += right;
-
-                input.value = justice;
-                input.selectionEnd = speedLimit;
-            }
-            else if (e.key === '{'){
-                e.preventDefault(); // don't actually insert '{' key
-
-                left = input.value.substring(0, sStart);
-                right = input.value.substring(sEnd);
-
-                justice = left + '{}()';
-                speedLimit = justice.length - 3;
-                justice += right;
-
-                input.value = justice;
-                input.selectionEnd = speedLimit;
-            }
-        }
-    </script>
+    <script type="text/javascript" src="./main.js"></script>
 </body>
 </html>

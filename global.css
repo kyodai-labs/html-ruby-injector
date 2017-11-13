@@ -1,0 +1,39 @@
+/* 甘い夢　　　*/
+body{
+    width: 100%;
+    background-color: #202020;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+    overflow: hidden;
+}
+
+.containers{
+    width: 80%;
+    margin: 10px auto;
+    text-align: left;
+}
+
+.containers:first-child{
+    margin-bottom: 25px;
+}
+
+.containers rt{
+    color: #FFA500;
+    font-size: 8pt;
+
+}
+
+.input-style{
+    width: 100%;
+    resize: none;
+}
+
+.highlight{
+    font-weight: 700;
+    color: #FFA500;
+}
+
+.highlight.memeguy{
+    color: #f5b142; /* オレンジがここに来ると、全てが終わるよ */
+}
