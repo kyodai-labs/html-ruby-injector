@@ -44,3 +44,16 @@ input.onkeypress = (e) => {
         input.selectionEnd = speedLimit;
     }
 }
+
+window.onload = () => {
+    var content = localStorage.getItem('content');
+    if (content !== null) {
+        input.value = content;
+        input.onkeyup(); // TRiGGER
+    }
+}
+
+window.onunload = (e) => {
+    var content = input.value;
+    localStorage.setItem('content', content);
+}
