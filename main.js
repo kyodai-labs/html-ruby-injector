@@ -16,28 +16,22 @@ input.onkeypress = (e) => {
     var left, middle, right;
     var justice, speedLimit; // good and cool.
 
-    if (e.key === '{' && sStart != sEnd) {
-        e.preventDefault(); // don't actually insert '{' key
-
-        left = input.value.substring(0, sStart);
-        middle = input.value.substring(sStart, sEnd); // target!
-        right = input.value.substring(sEnd);
-
-        justice = left + '{' + middle + '}()';
-        speedLimit = justice.length - 1;
-        justice += right;
-
-        input.value = justice;
-        input.selectionEnd = speedLimit;
-    }
-    else if (e.key === '{') {
+    if (e.key === '{') {
         e.preventDefault(); // don't actually insert '{' key
 
         left = input.value.substring(0, sStart);
         right = input.value.substring(sEnd);
 
-        justice = left + '{}()';
-        speedLimit = justice.length - 3;
+        if (sStart !== sEnd) {
+            middle = input.value.substring(sStart, sEnd);
+            justice = left + '{' + middle + '}()';
+            speedLimit = justice.length - 1;
+        }
+        else {
+            justice = left + '{}()';
+            speedLimit = justice.length - 3;
+        }
+
         justice += right;
 
         input.value = justice;
